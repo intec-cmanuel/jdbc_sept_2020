@@ -1,6 +1,6 @@
-package be.intecbrussel.data;
+package be.intecbrussel.demo1.data;
 
-import be.intecbrussel.model.Human;
+import be.intecbrussel.demo1.model.Human;
 
 import java.sql.*;
 import java.util.ArrayList;

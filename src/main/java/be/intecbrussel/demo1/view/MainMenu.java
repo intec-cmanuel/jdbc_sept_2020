@@ -1,12 +1,10 @@
-package be.intecbrussel.view;
+package be.intecbrussel.demo1.view;
 
-import be.intecbrussel.data.HumanDAO;
-import be.intecbrussel.model.Human;
+import be.intecbrussel.demo1.data.HumanDAO;
+import be.intecbrussel.demo1.model.Human;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class MainMenu {

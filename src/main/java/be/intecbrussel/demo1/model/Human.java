@@ -1,4 +1,4 @@
-package be.intecbrussel.model;
+package be.intecbrussel.demo1.model;
 
 public class Human {
     private String name;

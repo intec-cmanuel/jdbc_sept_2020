@@ -1,8 +1,6 @@
-package be.intecbrussel.app;
+package be.intecbrussel.demo1.app;
 
-import be.intecbrussel.view.MainMenu;
-
-import java.util.Map;
+import be.intecbrussel.demo1.view.MainMenu;
 
 public class HumanApp {
     public static void main(String[] args) {
