@@ -22,9 +22,10 @@ public class HumanDAO {
         try (Connection connection = DriverManager.getConnection(url, user, password);
                 Statement statement = connection.createStatement()) {
 
-            String query = String.format("INSERT INTO human (name, lastname, gender) VALUES ('%s', '%s', '%s')",
+            String query = String.format("INSERT INTO human (name, lastname, gender) VALUES ('%s', '%s', '%s');",
                     human.getName(), human.getLastName(), human.getGender());
 
+            System.out.println(query);
             statement.execute(query);
 
         }

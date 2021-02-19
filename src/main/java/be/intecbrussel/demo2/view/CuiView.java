@@ -1,7 +1,13 @@
 package be.intecbrussel.demo2.view;
 
+import be.intecbrussel.demo2.data.DogDAO;
+import be.intecbrussel.demo2.data.UserDAO;
+import be.intecbrussel.demo2.model.Dog;
+import be.intecbrussel.demo2.model.DogShelter;
+import be.intecbrussel.demo2.model.User;
 import be.intecbrussel.demo2.util.UserValidator;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CuiView {
@@ -58,8 +64,14 @@ public class CuiView {
         System.out.println("Enter user password :");
         String password = scanner.nextLine();
 
-        User user = userDao.getUser(username);
-         if (UserValidator.validateUserPassword(user, password)) {
+        User user = null;
+        try {
+            user = userDao.getUser(username);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        if (UserValidator.validateUserPassword(user, password)) {
              return user;
          } else {
              return null;
@@ -74,7 +86,11 @@ public class CuiView {
             DogShelter dogShelter = new DogShelter();
             System.out.println("Name of the dog you want to Adopt");
             dog = dogShelter.adopt(scanner.nextLine());
-            dogDao.saveDog(dog);
+            try {
+                dogDao.saveDog(dog, user.getUsername());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         } else if (dogChoice == 2) {
             dog = dogDao.getDog(user);
         } else {

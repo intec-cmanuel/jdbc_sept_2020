@@ -6,8 +6,8 @@ public class HumanApp {
     public static void main(String[] args) {
         MainMenu.logIn();
 
-//        MainMenu.displayMainMenu();
-        MainMenu.displayAllExistingHumans();
+        MainMenu.displayMainMenu();
+//        MainMenu.displayAllExistingHumans();
 
     }
 }

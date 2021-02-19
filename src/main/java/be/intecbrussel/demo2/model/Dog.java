@@ -14,4 +14,8 @@ public class Dog {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void pet(){
+        System.out.println("Doggo is pet, doggo is happy.");
+    }
 }

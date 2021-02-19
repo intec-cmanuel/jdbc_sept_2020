@@ -1,6 +1,7 @@
 package be.intecbrussel.demo2.model;
 
 public class User {
+    // UNIQUE ID !!!
     private String username;
     private String password;
     private Dog doggo;
