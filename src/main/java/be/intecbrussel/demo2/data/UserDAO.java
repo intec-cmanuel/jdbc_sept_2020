@@ -11,6 +11,19 @@ public class UserDAO {
     private String password;
 
     public void saveUser(User user) {
+        String query = "INSERT INTO user (username, password) VALUES (?, ?)";
+
+        try (Connection connection = DriverManager.getConnection(url, this.user, password);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.execute();
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+
     }
 
     public User getUser(String username) throws SQLException {

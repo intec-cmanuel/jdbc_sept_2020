@@ -3,10 +3,7 @@ package be.intecbrussel.demo2.data;
 import be.intecbrussel.demo2.model.Dog;
 import be.intecbrussel.demo2.model.User;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DogDAO {
     private final String url = "jdbc:mysql://localhost:3306/intec_test_persondb";
@@ -14,7 +11,7 @@ public class DogDAO {
     private String password;
 
     public void saveDog(Dog dog, String ownerName) throws SQLException {
-        String query = "INSERT INTO dog (name, ownerName) VALUES (?, ?)";
+        String query = "INSERT INTO dog (name, owner) VALUES (?, ?)";
 
         try (Connection connection = DriverManager.getConnection(url, username, password);
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -27,8 +24,22 @@ public class DogDAO {
         }
     }
 
-    public Dog getDog(User user) {
-        return null;
+    public Dog getDog(User user) throws SQLException{
+        String query = "SELECT * FROM dog WHERE owner LIKE ?";
+        Dog dog = null;
+        try (Connection connection = DriverManager.getConnection(url, this.username, password);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, user.getUsername());
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                String name = rs.getString("name");
+                dog = new Dog(name);
+            }
+
+        }
+        return dog;
+
     }
 
     public void setConfig(String username, String password) {

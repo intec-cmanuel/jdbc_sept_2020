@@ -92,7 +92,11 @@ public class CuiView {
                 throwables.printStackTrace();
             }
         } else if (dogChoice == 2) {
-            dog = dogDao.getDog(user);
+            try {
+                dog = dogDao.getDog(user);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         } else {
             System.out.println("Invalid");
         }
